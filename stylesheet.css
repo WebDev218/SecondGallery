@@ -1,0 +1,92 @@
+body {
+	margin: 0;
+	padding: 0;
+	/*background-color: blanchedalmond;*/
+	background-color: black;
+}
+
+/* ======================== Nav Bar ============================== */
+
+#navBar {
+	width: 100%;
+	height: 50px;
+	background-color: black;
+	font-family: helvetica;
+	font-size: 20px;
+	color: white;
+}
+
+#navBar ul {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+#navBar ul li {
+	display: inline;
+}
+
+#leftClick {
+	background-image: url('images/buttons/left.png');
+}
+
+
+#leftClick:hover  {	
+	background-image: url('images/buttons/left_selected.png');
+}
+
+#leftClick:active  {	
+	background-image: url('images/buttons/left_clicked.png');
+}
+
+#rightClick {
+	background-image: url('images/buttons/right.png');
+}
+
+
+#rightClick:hover  {	
+	background-image: url('images/buttons/right_selected.png');	
+}
+
+#rightClick:active  {	
+	background-image: url('images/buttons/right_clicked.png');
+}
+
+.navButton {
+	padding: 0px;
+	border: 0px;	
+	height: 50px;
+	width: 50px;
+	background-size: 50px 50px;	
+	transition: background 0.5s;
+}
+
+#allClick {
+	background-image: url('images/buttons/all.png');
+}
+
+#allClick:hover {
+	background-image: url('images/buttons/all_selected.png');
+}
+
+#allClick:focus {
+	background-image: url('images/buttons/all_clicked.png');
+}
+
+/* ========================= Images =============================*/
+
+.img {
+	/*display: none;*/
+
+	width: 100%;		
+	padding: 0;
+	margin: 0;
+	transition: opacity 0.5s;
+
+}
+
+#imagePanel {
+	height: 0px;	
+	padding: 0px;
+}
+
