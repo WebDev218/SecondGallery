@@ -9,6 +9,10 @@ var winWidth = window.innerWidth;
 var winHeight = window.innerHeight;   
 var iWidth; 
 var iHeight; 
+var resizedHeight;
+var topMargin;
+var resizedWidth;
+var leftMargin;
 
 function loadGallery() {
 	// imageArray = document.getElementsByClassName("img");	
@@ -33,19 +37,27 @@ imageTop.onload = function() {
 	resize();
 };
 
+document.resize = function() {
+ 	resize();
+ 	//deals with browser window being resized.
+}
+
 function resize() {
+	winWidth = window.innerWidth;
+	winHeight = window.innerHeight; 
+
 	iWidth = imageTop.naturalWidth;
+	var wWidth = imageTop.width;
 	iHeight = imageTop.naturalHeight;	
+	var wHeight = imageTop.height;
 
 	// imageTop.style.width = iWidth;
 	// imagePanel.style.height = iHeight;
 
 	var widerThanWindow = false;
 	var tallerThanWindow = false;
-	var resizedHeight;
-	var topMargin;
-	var resizedWidth;
- 	var leftMargin;
+
+
 
 	imageTop.style.marginTop = "0px"; //resets the margin
 	imageTop.style.marginLeft = "0px";
@@ -83,24 +95,34 @@ function resize() {
 	if (widerThanWindow == true && tallerThanWindow == true) {
 		// find which is bigger, then resize around that axis
 
-		if (iWidth > iHeight) {
-			imageTop.style.width = "";
-			imagePanel.style.height = (winHeight - 50) + "px";
-		 	imageTop.style.height = "100%"
-		}
+		console.log("It's a huge image.");
 
-		if (iHeight > iWidth) {
+		if (iWidth > iHeight) {
 			imageTop.style.width = "100%";
 			imagePanel.style.height = "auto";
 			resizedHeight = imageTop.height;
 			topMargin = winHeight - resizedHeight - 50;
 			imageTop.style.marginTop = (topMargin / 2) + "px";
+		}
+
+		if (iHeight > iWidth) {			
+			imageTop.style.width = "";
+			imagePanel.style.height = (winHeight - 50) + "px";
+		 	imageTop.style.height = "100%"
 
 			resizedWidth = imageTop.width;
 			leftMargin = winWidth - resizedWidth;
 			imageTop.style.marginLeft = (leftMargin / 2) + "px";
 		}
+
+		if (iHeight == iWidth) {
+			imageTop.style.width = "100%";
+			resizedHeight = imageTop.height;
+			topMargin = winHeight - resizedHeight - 50;
+			imageTop.style.marginTop = (topMargin / 2) + "px";
+		}
 	}
+
 
 	if (widerThanWindow == false && tallerThanWindow == false) {
 		//Center the image
@@ -127,6 +149,46 @@ function resize() {
 
 	}
 }
+
+/*
+function sizer(width) {
+	// iWidth = imageTop.naturalWidth;
+	// var wWidth = imageTop.width;
+	// iHeight = imageTop.naturalHeight;	
+	// var wHeight = imageTop.height;
+
+	// // imageTop.style.width = iWidth;
+	// // imagePanel.style.height = iHeight;
+
+	// var widerThanWindow = false;
+	// var tallerThanWindow = false;
+	// var resizedHeight;
+	// var topMargin;
+	// var resizedWidth;
+ // 	var leftMargin;
+
+ 	winWidth = window.innerWidth;
+	winHeight = window.innerHeight; 
+
+		if (width == true) {
+			imageTop.style.width = "100%";
+			imagePanel.style.height = "auto";
+			resizedHeight = imageTop.height;
+			topMargin = winHeight - resizedHeight - 50;
+			imageTop.style.marginTop = (topMargin / 2) + "px";
+		} else if (width == false) {
+			imageTop.style.width = "";
+			imagePanel.style.height = (winHeight - 50) + "px";
+		 	imageTop.style.height = "100%"
+
+			resizedWidth = imageTop.width;
+			leftMargin = winWidth - resizedWidth;
+			imageTop.style.marginLeft = (leftMargin / 2) + "px";
+		}
+
+
+}
+*/
 
 document.onkeydown = function() {
 	var e = window.event;
