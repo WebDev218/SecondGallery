@@ -128,6 +128,28 @@ function resize() {
 	}
 }
 
+document.onkeydown = function() {
+	var e = window.event;
+
+	/* 
+	37 = LEFT
+	38 = UP
+	39 = RIGHT
+	40 = DOWN
+
+	*/
+
+	if (e.keyCode == '37') {
+		console.log("Left Key Pressed!")
+		clickLeft() 
+	}
+
+		if (e.keyCode == '39') {
+		console.log("Right Key Pressed!")
+		clickRight() 
+	}
+}
+
 function clickRight() {
 	
 	if (galleryIndex == gLength) {
