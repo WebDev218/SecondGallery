@@ -27,56 +27,57 @@ function loadGallery() {
 	imagePanel.appendChild(imageTop);
 	imageTop.setAttribute("class", "img");
 	imageTop.setAttribute("src", "images/(" + galleryIndex + ").png");
-
-
 }
 
 imageTop.onload = function() {
+	resize();
+};
+
+function resize() {
 	iWidth = imageTop.naturalWidth;
 	iHeight = imageTop.naturalHeight;	
 
-	// var wider = false;
-
-	// imageTop.style.width = ""
-	// // imagePanel.style.height = ""
-
-	// if (iWidth > iHeight) {
-	// 	wider = true;	
-	// }
-
-	// console.log(wider);
-
-	// if (wider == true) {
-	// 	imageTop.style.width = "100%"
-	// 	imagePanel.style.height = "100%"
-	// 	console.log("Width 100%");
-	// } else {		
-	// 	imagePanel.style.height = (winHeight - 50) + "px";
-	// 	imageTop.style.height = "100%"
-	// 	console.log("Height 100%");
-	// }
+	// imageTop.style.width = iWidth;
+	// imagePanel.style.height = iHeight;
 
 	var widerThanWindow = false;
 	var tallerThanWindow = false;
+	var resizedHeight;
+	var topMargin;
+	var resizedWidth;
+ 	var leftMargin;
+
+	imageTop.style.marginTop = "0px"; //resets the margin
+	imageTop.style.marginLeft = "0px";
 
 	if (iWidth > winWidth) {
 		widerThanWindow = true;
 		console.log("Wider");
+		// If the pic is wider than window
 	}
 
 	if (iHeight > winHeight) {
 		tallerThanWindow = true;
 		console.log("Taller");
+		//if it's taller
 	}
 
 	if (widerThanWindow == true && tallerThanWindow == false) {
 		imageTop.style.width = "100%";
+		imagePanel.style.height = "auto";
+		resizedHeight = imageTop.height;
+		topMargin = winHeight - resizedHeight - 50;
+		imageTop.style.marginTop = (topMargin / 2) + "px";
 	}
 
-	if (widerThanWindow == false && tallerThanWindow == true) {
+	if ((widerThanWindow == false && tallerThanWindow == true)) {
 		imageTop.style.width = "";
 		imagePanel.style.height = (winHeight - 50) + "px";
 	 	imageTop.style.height = "100%"
+
+	 	resizedWidth = imageTop.width;
+		leftMargin = winWidth - resizedWidth;
+		imageTop.style.marginLeft = (leftMargin / 2) + "px";
 	}
 
 	if (widerThanWindow == true && tallerThanWindow == true) {
@@ -90,6 +91,14 @@ imageTop.onload = function() {
 
 		if (iHeight > iWidth) {
 			imageTop.style.width = "100%";
+			imagePanel.style.height = "auto";
+			resizedHeight = imageTop.height;
+			topMargin = winHeight - resizedHeight - 50;
+			imageTop.style.marginTop = (topMargin / 2) + "px";
+
+			resizedWidth = imageTop.width;
+			leftMargin = winWidth - resizedWidth;
+			imageTop.style.marginLeft = (leftMargin / 2) + "px";
 		}
 	}
 
@@ -97,17 +106,27 @@ imageTop.onload = function() {
 		//Center the image
 		
 		if (iWidth > iHeight) {
-			imageTop.style.width = "";
-			imagePanel.style.height = (winHeight - 50) + "px";
-		 	imageTop.style.height = "100%"
+			imageTop.style.width = "100%";
+			imagePanel.style.height = "auto";
+			// only applies to three now
+			resizedHeight = imageTop.height;
+			topMargin = winHeight - resizedHeight - 50;
+			imageTop.style.marginTop = (topMargin / 2) + "px";
+
 		}
 
 		if (iHeight > iWidth) {
-			imageTop.style.width = "100%";
+			imageTop.style.width = "";
+			imagePanel.style.height = (winHeight - 50) + "px";
+		 	imageTop.style.height = "100%";
+
+		 	resizedWidth = imageTop.width;
+			leftMargin = winWidth - resizedWidth;
+			imageTop.style.marginLeft = (leftMargin / 2) + "px";
 		}
 
 	}
-};
+}
 
 function clickRight() {
 	
